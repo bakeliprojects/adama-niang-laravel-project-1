@@ -2,20 +2,19 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-    <body>
+<body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" 
       aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('acceuil.create')  }}">Ajouter article</a>
-      <a class="navbar-brand" href="{{ route('acceuil.index')  }}">Liste des articles</a>
+      <a class="navbar-brand" href="{{ route('acceuil.index')  }}">Liste des articles proposés</a>
+      <a href="{{ route('acceuil.store') }}" class="navbar-brand">Ajouter article</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,27 +38,8 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <!--<div class="btn btn-block"><a href="{{ route('acceuil.create')  }}"><h2>Ajouter un nouveau article  </h2> </a></div> -->
-    <div class="container">
-        
-<div class="col-sm-6 col-md-4">
-                <div class="thumbnail" height="50px">
-                    <img src="{{ asset('img/'.$vendeur->contact) }}" class="img-responsive" alt="..." >
-                    <div class="caption">
-<!--                        <h3> {{$vendeur->imagepath}} </h3> -->
-                        <p class="col-sm-6 col-md-4"> {{$vendeur->nom}}</p>
-                        <p>
-                            <div class="clearfix">
-                                <div class="pull-left prix">Le prix est de : {{$vendeur->prix}}FCFA</div><br>
-                                <div class="pull-left genre">Provenance : {{$vendeur->genre}}</div>
-                                <a href="{{ url('commande')}}" class="btn btn-success pull-right" role="button">Commander article</a>
-                            </div>
-                    </p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    </body>
+<div> 
+  <h5>Votre commande a été prise en compte !!!</h5>
+</div>
+</body>
 </html>

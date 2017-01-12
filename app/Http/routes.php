@@ -31,3 +31,13 @@ Route::group(['middleware'=>'web'],function(){
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('commande', function(){
+	return view('Vues/commande');
+});
+
+Route::get('acceuil.show', 'ControllerVendeur@show');
+
+Route::get('test', function() {
+	return view('Vues/test');
+});

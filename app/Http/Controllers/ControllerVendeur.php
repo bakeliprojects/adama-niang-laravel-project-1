@@ -14,6 +14,8 @@ use App\Http\Controllers;
 
 use Ressources\Views\Vues;
 
+use \Input as Input;
+
 class ControllerVendeur extends Controller
 {
     /**
@@ -48,16 +50,38 @@ class ControllerVendeur extends Controller
      */
 	public function store(RequestVendeur $request)
     {
-        $vendeur = new ModelVendeur;
 
+        $fileName = $request->contact->getClientOriginalName();
+        $request->contact->move('img',$fileName);
+        $vendeur = new ModelVendeur;
         $vendeur->nom = $request['nom'];
         $vendeur->genre = $request['genre'];
         $vendeur->prix = $request['prix'];
-        $vendeur->contact = $request['contact'];
+        $vendeur->contact=$fileName;
         $vendeur->save();
+
+        /*$file = ModelVendeur::file('contact');
+        $fileName = $file->getControllerVendeur();
+        ModelVendeur::file('contact')->move('img/',$fileName);
+
+        DB::table('vendeur')->insert([
+            'nom' => ModelVendeur::get('nom'),
+            'genre' => ModelVendeur::get('genre'),
+            'prix' => ModelVendeur::get('prix'),
+            'contact' => $fileName
+        ]);
+
+       /* $posts = DB::table('post')
+          ->join('users', 'users.id', '=', 'post.user_id')
+          ->select('post.*', 'users.name','users.email','users.password')
+          ->get();*/
 
 
         return redirect()->route('acceuil.index');
+
+    }
+
+    public function chargerimage(){
 
     }
 
@@ -70,7 +94,8 @@ class ControllerVendeur extends Controller
     public function show($id)
     {
         $acceuil = ModelVendeur::find($id);
-        return view('Vues.show')->with('acceuil',$acceuil);
+        //return view('Vues.show')->with('acceuil',$acceuil);
+        return redirect()->route('acceuil.show');
     }
 
     /**
@@ -97,11 +122,14 @@ class ControllerVendeur extends Controller
     {
         $acceuil = ModelVendeur::find($id);
 
-        $acceuil->nom = $request['nom'];
-        $acceuil->genre = $request['genre'];
-        $acceuil->prix = $request['prix'];
-        $acceuil->contact = $request['contact'];
-        $acceuil->save();
+        $fileName = $request->contact->getClientOriginalName();
+        $request->contact->move('img',$fileName);
+        $vendeur = new ModelVendeur;
+        $vendeur->nom = $request['nom'];
+        $vendeur->genre = $request['genre'];
+        $vendeur->prix = $request['prix'];
+        $vendeur->contact=$fileName;
+        $vendeur->save();
         
 
         return redirect()->route('acceuil.index');
@@ -117,7 +145,6 @@ class ControllerVendeur extends Controller
     {
         ModelVendeur::find($id)->delete();
         return redirect()->route('acceuil.index');
-
     }
 
 }
