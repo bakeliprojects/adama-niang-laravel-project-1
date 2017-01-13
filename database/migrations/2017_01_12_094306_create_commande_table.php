@@ -11,6 +11,7 @@ class CreateCommandeTable extends Migration
         Schema::create('commande', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->integer('vendeur_id');
             $table->string('commandeur');
             $table->string('nombre');
             $table->string('contact');

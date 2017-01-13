@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
+    <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -13,33 +13,37 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('acceuil.index')  }}">Liste des articles proposés</a>
-      <a href="{{ route('acceuil.store') }}" class="navbar-brand">Ajouter article</a>
+      <a class="navbar-brand" href="{{ route('acceuil.create')  }}">Ajouter article</a>
+      <a class="navbar-brand" href="{{ url('acceuil.index')  }}">Meubles en lignes</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url('/logout') }}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        <li><a href="{{ url('/logout') }}"> <i class="fa fa-user-o" aria-hidden="true"></i>
           Se déconnecter </a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-          aria-haspopup="true" aria-expanded="false">
-          <!--<i class="fa fa-user" aria-hidden="true"></i>
-          Utilisateur <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">S'inscrire </a></li>
-            <li><a href="#">Se connecter </a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"> Se deconnecter </a></li>
-          </ul>-->
-        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div> 
-  <h5>Votre commande a été prise en compte !!!</h5>
+    <div class="container">
+
+    @foreach($allCommande as $commande)
+
+    <div class="row">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail" height="50px">
+                    <div class="caption">
+                        <p class="col-sm-6 col-md-4">Le commandeur: {{$commande->commandeur}}</p>
+                        <p class="col-sm-6 col-md-4">Le nombre d'articles : {{$commande->nombre}}</p>
+                        <p class="col-sm-6 col-md-4">Ses coordonnées: {{$commande->contact}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    @endforeach
 </div>
-</body>
+    </body>
 </html>

@@ -32,11 +32,20 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+/*Route::get('commande', function(){
+	return view('Vues/commande');
+});*/
+
+//Route::get('commande', 'ControllerCommande@store');
 Route::get('commande', function(){
 	return view('Vues/commande');
 });
 
-Route::get('acceuil.show', 'ControllerVendeur@show');
+Route::get('commande/liste', function(){
+	return view('Vues/listcommande');
+});
+
+//Route::get('acceuil.show', 'ControllerVendeur@show');
 
 Route::get('test', function() {
 	return view('Vues/test');

@@ -60,23 +60,6 @@ class ControllerVendeur extends Controller
         $vendeur->contact=$fileName;
         $vendeur->save();
 
-        /*$file = ModelVendeur::file('contact');
-        $fileName = $file->getControllerVendeur();
-        ModelVendeur::file('contact')->move('img/',$fileName);
-
-        DB::table('vendeur')->insert([
-            'nom' => ModelVendeur::get('nom'),
-            'genre' => ModelVendeur::get('genre'),
-            'prix' => ModelVendeur::get('prix'),
-            'contact' => $fileName
-        ]);
-
-       /* $posts = DB::table('post')
-          ->join('users', 'users.id', '=', 'post.user_id')
-          ->select('post.*', 'users.name','users.email','users.password')
-          ->get();*/
-
-
         return redirect()->route('acceuil.index');
 
     }
@@ -144,6 +127,17 @@ class ControllerVendeur extends Controller
     public function destroy($id)
     {
         ModelVendeur::find($id)->delete();
+        return redirect()->route('acceuil.index');
+    }
+
+    public function commander(RequestCommande $requete)
+    {
+        $commande = new ModelVendeur;
+        $commande->commandeur = $requete['commandeur'];
+        $commande->nombre = $requete['nombre'];
+        $commande->contact = $requete['contact'];
+        $vendeur->save();
+
         return redirect()->route('acceuil.index');
     }
 
